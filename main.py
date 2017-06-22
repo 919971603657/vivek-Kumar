@@ -124,21 +124,19 @@ def read_message():
 
     secret_text = Steganography.decode(output_path)
     print secret_text
-    if len(secret_text) > 100:
-        friends.pop(sender)
-    elif secret_text == "SOS":
-        print colored( "may god bless every one","red")
+
+    if len(secret_text) > 100: # condition shows that secret of the message text greater than 100
+        friends.pop(sender)    # then list of the message of the send delete
+    elif secret_text == "SOS": # condition shows that if the secret text show message SOS
+        print colored( "may god bless every one","red") # then show the appropriate message
     elif secret_text == "SAVE ME":
         print colored("you should be protected by us","blue")
     elif secret_text == "HELP ME":
         print colored("we should help you","red")
-
-        new_chat = ChatMessage(secret_text,False)
-        friends[sender].chats.append(new_chat)
-    elif len(secret_text)> 100:
-        friends.pop(sender)
     else:
-      print colored("Your secret message has been saved!","red")
+        new_chat = ChatMessage(secret_text, False)
+        friends[sender].chats.append(new_chat)
+        print colored("Your secret message has been saved!","red")
 
 # read chat history after being read the message send to the friend
 def read_chat_history():
